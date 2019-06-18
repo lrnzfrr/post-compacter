@@ -1,0 +1,65 @@
+# Copyright (C) 2019 Lorenzo Ferri
+# This file is distributed under the same license as the Post Compacter plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Post Compacter 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/post-compacter\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-06-18T11:49:10+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.1.0\n"
+"X-Domain: post-compacter\n"
+
+#. Plugin Name of the plugin
+#: admin/view/form.php:3
+msgid "Post Compacter"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.flor.it"
+msgstr ""
+
+#. Description of the plugin
+msgid "This Plugin compact posts in a single page / post"
+msgstr ""
+
+#. Author of the plugin
+msgid "Lorenzo Ferri"
+msgstr ""
+
+#: admin/view/form.php:10
+msgid "Post / Page ID"
+msgstr ""
+
+#: admin/view/form.php:18
+msgid "Post Ids (one for row)"
+msgstr ""
+
+#: admin/view/form.php:28
+msgid "Compact"
+msgstr ""
+
+#: admin/view/delete_posts.php:1
+msgid "Post deleted"
+msgstr ""
+
+#: admin/view/delete_posts.php:2
+msgid "Back"
+msgstr ""
+
+#: admin/view/admin.php:3
+msgid "Posts compacter will insert posts content in page / post selected"
+msgstr ""
+
+#: admin/view/admin.php:37
+msgid "Warning"
+msgstr ""
+
+#: admin/view/admin.php:40
+msgid "Posts will be deleted"
+msgstr ""
