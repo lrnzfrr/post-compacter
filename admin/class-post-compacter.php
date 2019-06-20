@@ -84,7 +84,7 @@ class Post_Compacter_Admin {
 		$appendBody = [];
 		$redirects = [];
 	 
-		$page =  get_post($data['post_compacter_page_id']);
+		$page =  get_post(trim($data['post_compacter_page_id']));
 		if(!$page) {
 			throw new \Exception(__( 'No page found', $this->plugin_slug ));
 		}
@@ -104,14 +104,10 @@ class Post_Compacter_Admin {
 			$postDate =  date("d-m-Y H:i", strtotime($post->post_date_gmt));
 	
 			$authorName = get_the_author_meta( 'display_name' , $post->post_author ); 
-			$bodyToAppend =  "<div id='post_" . $postID . "' class='archived_posts'>
-									<h2>" . $post->post_title . "</h2>
-								   <small>" . __( 'updated at', $this->plugin_slug ). " " . $postDate ."</small> <span class='post_compacter_author'>$authorName</span>
-									<div id='post_body_" . $postID . "' class='archived_posts_body'>" . $post->post_content. "</div>
-							</div>";
+			$bodyToAppend =  "<div id='pc_post_" . $postID . "' class='pc_archived_posts'><h2>" . $post->post_title . "</h2><div class='pc_info'><span class='pc_date'>" . __( 'updated at', $this->plugin_slug ). " " . $postDate ."</span> - <span class='pc_author'>$authorName</span></div><div id='pc_body_" . $postID . "' class='pc_posts_body'>" . $post->post_content. "</div></div>";
 			$appendBody[] = $bodyToAppend;
 		
-			$redirects[] = "Redirect 301 " . get_permalink($postID) . " " . $mainRedirect . '#post_'.$postID ;
+			$redirects[] = "Redirect 301 " . str_replace(home_url(), '', get_permalink($postID)) . " " . $mainRedirect . '#pc_post_'.$postID ;
 		}
 		// mod Page / Post:
 		$my_post = array(
