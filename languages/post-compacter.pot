@@ -63,3 +63,6 @@ msgstr ""
 #: admin/view/admin.php:40
 msgid "Posts will be deleted"
 msgstr ""
+
+msgid "updated at"
+msgstr ""

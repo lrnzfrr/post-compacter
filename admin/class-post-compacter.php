@@ -101,10 +101,12 @@ class Post_Compacter_Admin {
 
 		foreach($posts as $post) {
 			$postID = $post->ID;
-		 
+			$postDate =  date("d-m-Y H:i", strtotime($post->post_date_gmt));
+	
+			$authorName = get_the_author_meta( 'display_name' , $post->post_author ); 
 			$bodyToAppend =  "<div id='post_" . $postID . "' class='archived_posts'>
 									<h2>" . $post->post_title . "</h2>
-								   <small>" . $post->post_date_gmt ."</small>
+								   <small>" . __( 'updated at', $this->plugin_slug ). " " . $postDate ."</small> <span class='post_compacter_author'>$authorName</span>
 									<div id='post_body_" . $postID . "' class='archived_posts_body'>" . $post->post_content. "</div>
 							</div>";
 			$appendBody[] = $bodyToAppend;
