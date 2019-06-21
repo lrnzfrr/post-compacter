@@ -171,6 +171,8 @@ class Post_Compacter_Admin {
 	 */
 	public function insert_redirect_data($old_url,$new_url) {
 		global $wpdb;
+		$old_url = trim($old_url);
+		$new_url = trim($new_url);
 		$table_name = $wpdb->prefix."post_compacter_redirects";
 		$created = current_time( 'mysql' );
 		$wpdb->insert($table_name,compact('old_url','new_url','created'));
