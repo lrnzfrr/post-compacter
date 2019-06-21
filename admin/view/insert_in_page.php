@@ -1,11 +1,11 @@
-<div><h2>Redirects generati:</h2>
+<div><h2><?php _e( 'Redirects Generated', 'post-compacter' ); ?></h2>
 <textarea cols=200 rows=<?php echo count($redirects) +1; ?> readonly="readonly">
 <?php echo implode("\n",$redirects); ?>
 </textarea>
 </p>
 
 <p>
-Visualizza la pagina contentente i post:
+<?php _e( 'Page View', 'post-compacter' ); ?>
 <a href="<?php echo $mainRedirect; ?>" target="_blank"><?php echo $mainRedirect; ?></a>
 
 <form action="" method="POST">

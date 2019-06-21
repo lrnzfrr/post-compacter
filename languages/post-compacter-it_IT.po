@@ -68,3 +68,28 @@ msgstr "I Posts verranno eliminati"
 
 msgid "updated at"
 msgstr "aggiornato il"
+
+msgid "Redirects Generated"
+msgstr "Redirect Generati"
+
+msgid "Page View"
+msgstr "Visualizza Pagina"
+
+msgid "Redirect From"
+msgstr "Redirect Da"
+
+msgid "Redirect To"
+msgstr "Redirect a"
+
+msgid "Add Redirect"
+msgstr "Nuovo Redirect"
+
+msgid "No Redirects founds"
+msgstr "Nessun Redirect trovato"
+
+msgid "Delete Redirect"
+msgstr "Elimina Redirect"
+
+msgid "Delete Redirect?"
+msgstr "Si sta eliminado il redirect selezionato, procedere?"
+

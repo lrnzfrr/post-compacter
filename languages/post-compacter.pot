@@ -66,3 +66,28 @@ msgstr ""
 
 msgid "updated at"
 msgstr ""
+
+msgid "Redirects Generated"
+msgstr ""
+
+msgid "Page View"
+msgstr ""
+
+msgid "Redirect From"
+msgstr ""
+
+msgid "Redirect To"
+msgstr ""
+
+msgid "Add Redirect"
+msgstr ""
+
+msgid "No Redirects founds"
+msgstr ""
+
+msgid "Delete Redirect"
+msgstr ""
+
+msgid "Delete Redirect?"
+msgstr ""
+

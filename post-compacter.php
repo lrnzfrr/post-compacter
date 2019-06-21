@@ -30,10 +30,36 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-post-compacter.php' );
+
+register_activation_hook( __FILE__, 'post_compacter_activate');
 add_action( 'plugins_loaded', array( 'Post_Compacter', 'get_instance' ) );
+ 
+
 
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 
     require_once( plugin_dir_path( __FILE__ ) . 'admin/class-post-compacter.php' );
     add_action( 'plugins_loaded', array( 'Post_Compacter_Admin', 'get_instance' ) );
+}
+
+## Activation Function
+function post_compacter_activate() {
+    global $wpdb;
+    $charset_collate = $wpdb->get_charset_collate();
+    $table_name = $wpdb->prefix."post_compacter_redirects";
+
+    $query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
+
+    if ( ! $wpdb->get_var( $query ) == $table_name ) {
+        $sql = 'CREATE TABLE '.$table_name. "(
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            old_url VARCHAR(255),
+            new_url VARCHAR(255),
+            created datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+            PRIMARY KEY  (id)
+            ) $charset_collate;";
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        add_option( 'post_compacter_db_version', '1.1' );
+        dbDelta( $sql );
+    }
 }

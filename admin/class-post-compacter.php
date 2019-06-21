@@ -48,11 +48,27 @@ class Post_Compacter_Admin {
             $this->plugin_slug,
 			array(&$this, 'display_plugin_admin_page'),
 			'dashicons-archive'
-        ); 
+		); 
+		add_submenu_page( $this->plugin_slug, 'Redirects', 'Redirects', 'manage_options', 'display_redirects', array(&$this, 'display_redirects') );
+	 
 
 	}
 
+	public function display_redirects() {
+		global $wpdb;
+		if(isset($_POST) && isset($_POST['add_redirect'])) {
+			$this->insert_redirect_data($_POST['post_compacter_redirect_from'],$_POST['post_compacter_redirect_to']);
+		}
 
+		if(isset($_POST) && isset($_POST['delete_redirect'])) {
+			$this->delete_redirect($_POST['delete_redirect']);
+		}
+
+		$table_name = $wpdb->prefix."post_compacter_redirects";
+		$sql = "SELECT * FROM  $table_name WHERE old_url LIKE '$old_url%' ORDER BY id DESC";
+		$result = $wpdb->get_results ($sql);
+		require('view/display_redirects.php');
+	}
 	/**
 	 * display_plugin_admin_page
 	 *
@@ -106,8 +122,8 @@ class Post_Compacter_Admin {
 			$authorName = get_the_author_meta( 'display_name' , $post->post_author ); 
 			$bodyToAppend =  "<div id='pc_post_" . $postID . "' class='pc_archived_posts'><h2>" . $post->post_title . "</h2><div class='pc_info'><span class='pc_date'>" . __( 'updated at', $this->plugin_slug ). " " . $postDate ."</span> - <span class='pc_author'>$authorName</span></div><div id='pc_body_" . $postID . "' class='pc_posts_body'>" . $post->post_content. "</div></div>";
 			$appendBody[] = $bodyToAppend;
-		
-			$redirects[] = "Redirect 301 " . str_replace(home_url(), '', get_permalink($postID)) . " " . $mainRedirect . '#pc_post_'.$postID ;
+			$this->insert_redirect_data(str_replace(home_url(), '', get_permalink($postID)),$mainRedirect . '#pc_post_'.$postID );
+			$redirects[] =  str_replace(home_url(), '', get_permalink($postID)) . " " . $mainRedirect . '#pc_post_'.$postID ;
 		}
 		// mod Page / Post:
 		$my_post = array(
@@ -131,5 +147,34 @@ class Post_Compacter_Admin {
 			wp_delete_post($postID);
 		}		
 		require('view/delete_posts.php');
+	}
+
+	/**
+	 * insert_redirect_data
+	 *
+	 * @param  mixed $old_url
+	 * @param  mixed $new_url
+	 *
+	 * @return void
+	 */
+	public function insert_redirect_data($old_url,$new_url) {
+		global $wpdb;
+		$table_name = $wpdb->prefix."post_compacter_redirects";
+		$created = current_time( 'mysql' );
+		$wpdb->insert($table_name,compact('old_url','new_url','created'));
+	}
+	
+	/**
+	 * insert_redirect_data
+	 *
+	 * @param  mixed $old_url
+	 * @param  mixed $new_url
+	 *
+	 * @return void
+	 */
+	public function delete_redirect($id) {
+		global $wpdb;
+		$table_name = $wpdb->prefix."post_compacter_redirects";
+		$wpdb->delete( $table_name, compact('id') );
 	}
 }
