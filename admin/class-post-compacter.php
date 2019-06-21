@@ -49,13 +49,17 @@ class Post_Compacter_Admin {
 			array(&$this, 'display_plugin_admin_page'),
 			'dashicons-archive'
 		); 
-		add_submenu_page( $this->plugin_slug, 'Redirects', 'Redirects', 'manage_options', 'display_redirects', array(&$this, 'display_redirects') );
+		add_submenu_page( $this->plugin_slug, 'Redirects', 'Redirects', 'manage_options', 'post_compacter_display_redirects', array(&$this, 'display_redirects') );
 	 
 
 	}
 
 	public function display_redirects() {
 		global $wpdb;
+		$items_per_page = 20;
+		$page = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
+		$offset = ( $page * $items_per_page ) - $items_per_page;
+
 		if(isset($_POST) && isset($_POST['add_redirect'])) {
 			$this->insert_redirect_data($_POST['post_compacter_redirect_from'],$_POST['post_compacter_redirect_to']);
 		}
@@ -65,8 +69,16 @@ class Post_Compacter_Admin {
 		}
 
 		$table_name = $wpdb->prefix."post_compacter_redirects";
-		$sql = "SELECT * FROM  $table_name WHERE old_url LIKE '$old_url%' ORDER BY id DESC";
-		$result = $wpdb->get_results ($sql);
+		$search = '';
+		if(isset($_GET) && isset($_GET['search_redirect']) && trim($_GET['search_redirect']) != '') {
+			$search = addslashes($_GET['search_redirect']);
+			$conditions = " WHERE ( old_url LIKE '%$search%' OR new_url LIKE '%$search%')";
+		}
+		$sql = "SELECT * FROM  $table_name  $conditions ORDER BY id DESC";
+		$sqlCount =  "SELECT COUNT(1) FROM $table_name  $conditions";
+
+		$total = $wpdb->get_var( $sqlCount );
+		$result = $wpdb->get_results( $sql . ' LIMIT '. $offset.', '. $items_per_page, OBJECT );
 		require('view/display_redirects.php');
 	}
 	/**
