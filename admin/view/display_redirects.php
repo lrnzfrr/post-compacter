@@ -1,4 +1,4 @@
-<h2>Redirects</h2>
+<h2>Redirects <small>(<?php echo $total; ?>)</small></h2>
 <form action="" method="post">
 <input type="hidden" value="1" name="add_redirect" />
 <table class="form-table" style="width:70%">

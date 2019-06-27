@@ -57,6 +57,7 @@ class Post_Compacter_Admin {
 	public function display_redirects() {
 		global $wpdb;
 		$items_per_page = 20;
+
 		$page = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
 		$offset = ( $page * $items_per_page ) - $items_per_page;
 

@@ -26,6 +26,10 @@ class Post_Compacter
 		$table_name = $wpdb->prefix."post_compacter_redirects";
 		global $wp;
 		$old_url = $_SERVER['REQUEST_URI']; 
+		if(strstr($_SERVER['REQUEST_URI'],'?')) {
+			$tmpStr = explode('?',$_SERVER['REQUEST_URI']);
+			$old_url = $tmpStr[0];
+		}
 	
 		$sql = "SELECT * FROM  $table_name WHERE old_url = '$old_url'";
 		$result = $wpdb->get_results ($sql);
