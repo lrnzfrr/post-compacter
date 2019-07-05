@@ -91,3 +91,5 @@ msgstr ""
 msgid "Delete Redirect?"
 msgstr ""
 
+msgid "Delete Posts"
+msgstr ""

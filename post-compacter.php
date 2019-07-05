@@ -38,7 +38,8 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 
 	require_once plugin_dir_path( __FILE__ ) . 'admin/class-post-compacter-admin.php';
 	add_action( 'plugins_loaded', array( 'Post_Compacter_Admin', 'get_instance' ) );
-}
+} 
+define('__POST_COMPACTER_PLUGIN_PATH__',plugin_dir_path(  __FILE__ ));
 
 
 /**

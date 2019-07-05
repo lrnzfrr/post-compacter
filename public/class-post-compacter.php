@@ -64,7 +64,7 @@ class Post_Compacter {
 	 * @return void
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'post-compacter', false, plugin_dir_path( __FILE__ ) . '/languages/' );
+		load_plugin_textdomain( 'post-compacter', false, '/post-compacter/languages/');
 	}
 
 	/**

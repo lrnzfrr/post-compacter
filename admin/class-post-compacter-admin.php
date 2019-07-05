@@ -175,6 +175,11 @@ class Post_Compacter_Admin {
 			$append_body[]  = $body_to_append;
 			$this->insert_redirect_data( str_replace( home_url(), '', get_permalink( $post_id ) ), $main_redirect . '#pc_post_' . $post_id );
 			$redirects[] = str_replace( home_url(), '', get_permalink( $post_id ) ) . ' ' . $main_redirect . '#pc_post_' . $post_id;
+
+			// eliminare subito? 
+			if(isset($_POST['delete_posts'])) {
+				wp_delete_post( $post_id );
+			}
 		}
 		// mod Page / Post:
 		$my_post = array(

@@ -25,6 +25,9 @@
 									</tbody>
 								</table>
 								<p>
+									<input type="checkbox" value="1" name="delete_posts" /> <?php _e( 'Delete Posts', 'post-compacter' ); ?>
+								</p>
+								<p>
 									<input class="button-primary" type="submit" name="submit" value="<?php _e( 'Compact', 'post-compacter' ); ?>" />
 								</p>
 
