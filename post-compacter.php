@@ -7,7 +7,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://www.player.it
+ * @link              https://www.flor.it
  * @since             1.0.0
  * @package           Post_Compacter
  *
