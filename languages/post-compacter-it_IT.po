@@ -9,8 +9,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2019-06-18T11:49:10+02:00\n"
-"PO-Revision-Date: 2019-07-05 17:39+0200\n"
-"X-Generator: Poedit 2.2.1\n"
+"PO-Revision-Date: 2019-11-05 15:41+0100\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Domain: post-compacter\n"
 "Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -36,11 +36,11 @@ msgstr "Lorenzo Ferri"
 
 #: admin/view/form.php:10
 msgid "Post / Page ID"
-msgstr "Post / Page ID"
+msgstr "Post / Page ID destinazione"
 
 #: admin/view/form.php:18
 msgid "Post Ids (one for row)"
-msgstr "Post Ids (uno per riga)"
+msgstr "Post Ids (uno per riga) da compattare"
 
 #: admin/view/form.php:28
 msgid "Compact"

@@ -52,7 +52,8 @@ function post_compacter_activate() {
 	$charset_collate = $wpdb->get_charset_collate();
 	$table_name      = $wpdb->prefix . 'post_compacter_redirects';
 
-	if ( ! $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) ) ) === $table_name ) {
+	$check = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name )) );
+	if ( $check !== $table_name ) {
 		$sql = 'CREATE TABLE ' . $table_name . "(
             id mediumint(9) NOT NULL AUTO_INCREMENT,
             old_url VARCHAR(255),
